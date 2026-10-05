@@ -57,3 +57,40 @@ dt { color: #778481; } dd { margin: 0; text-align: right; max-width: 220px; }
 .deviation-list button.active { border-color: #1d5755; box-shadow: inset 3px 0 #1d5755; }.deviation-list button > div, .deviation-list footer { display: flex; justify-content: space-between; align-items: center; }
 .deviation-list strong { font-size: 14px; }.deviation-list span, .deviation-list small, .deviation-list footer span { color: #788683; font-size: 11px; }
 .reset-button { position: fixed; right: 20px; bottom: 14px; }
+
+/* 频率版本时间线 */
+.freq-timeline { background: white; border: 1px solid #dbe2df; border-radius: 4px; padding: 13px 15px; margin-top: 12px; }
+.freq-timeline header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.freq-timeline header span { font-weight: 600; font-size: 13px; }
+.freq-timeline header small { color: #7f8c89; font-size: 11px; }
+.freq-timeline ol { margin: 0; padding-left: 2px; list-style: none; display: grid; gap: 6px; }
+.freq-timeline li { border-left: 3px solid #c9d5d1; padding: 7px 10px; background: #f6f9f8; display: grid; gap: 3px; }
+.freq-timeline li.current { border-left-color: #1d7a52; background: #edf7f1; }
+.freq-timeline li div { display: flex; gap: 8px; align-items: center; }
+.freq-timeline li small { color: #788683; font-size: 11px; }
+.hint-text { color: #5c6b67; font-size: 11px; margin: 6px 0; }
+.hint-text.ok { color: #1d7a52; }
+
+/* 断档列表 */
+.gap-list { display: grid; gap: 6px; margin-bottom: 8px; }
+.gap, .gap-missing { display: grid; gap: 3px; padding: 9px; border-radius: 3px; }
+.gap { background: #fdf2f0; border-left: 3px solid #d75048; }
+.gap-missing { background: #fdf8ec; border-left: 3px solid #c89c30; }
+.gap div, .gap-missing div { display: flex; justify-content: space-between; align-items: center; }
+.gap small, .gap-missing small { color: #7a6f64; font-size: 10px; }
+.monitoring-list .reading-breach { background: #fdf2f0 !important; }
+.record-panel h3 small { color: #92a09c; font-weight: 400; }
+
+/* 录入表单 / 放行结论 */
+.inline-form { display: grid; gap: 8px; margin: 10px 0; padding: 12px; background: #f4f7f5; border: 1px dashed #c4d2cd; }
+.inline-form select { padding: 6px 8px; border: 1px solid #c4d2cd; border-radius: 4px; background: white; font-size: 13px; }
+.gate { padding: 11px 13px; border-radius: 3px; display: grid; gap: 6px; }
+.gate strong { font-size: 13px; }
+.gate small, .gate li { font-size: 11px; line-height: 1.6; }
+.gate ul { margin: 0; padding-left: 16px; }
+.gate-ok { background: #edf7f1; border-left: 3px solid #1d7a52; color: #155c3f; }
+.gate-blocked { background: #fdf2f0; border-left: 3px solid #d75048; color: #8a352f; }
+.gap-detail { background: #f4f7f5; padding: 10px 12px; margin-bottom: 12px; }
+.gap-detail dl { margin: 0 0 8px; }
+.closed-note { background: #f4f7f5; padding: 10px 12px; font-size: 12px; display: grid; gap: 4px; }
+.closed-note p { margin: 0; }
