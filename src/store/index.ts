@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import haccpReducer from './haccpSlice'
+import haccpReducer, { recalculateGaps } from './haccpSlice'
 import { haccpApi } from '../services/api'
 
 export const store = configureStore({
@@ -17,6 +17,9 @@ store.subscribe(() => {
     // The app remains usable when browser storage is unavailable.
   }
 })
+
+// 启动后以当前全部频率版本重算断档：历史回填基线随之生效（幂等，无变化不产生事件）
+store.dispatch(recalculateGaps())
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

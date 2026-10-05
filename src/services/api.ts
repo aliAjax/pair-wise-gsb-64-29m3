@@ -1,6 +1,7 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { seedBatches } from '../data/seed'
-import type { Batch } from '../types'
+import { evaluateRelease } from './frequency'
+import type { Batch, Deviation, FrequencyVersion, GapRecord, ProcessStep, ReleaseEvaluation } from '../types'
 
 export const haccpApi = createApi({
   reducerPath: 'haccpApi',
@@ -9,12 +10,13 @@ export const haccpApi = createApi({
     loadBatchSnapshot: builder.query<Batch[], void>({
       queryFn: async () => ({ data: structuredClone(seedBatches) })
     }),
-    checkReleaseReadiness: builder.query<{ ready: boolean; reasons: string[] }, { batchId: string; openDeviations: number }>({
-      queryFn: async ({ batchId, openDeviations }) => ({
-        data: {
-          ready: openDeviations === 0,
-          reasons: openDeviations === 0 ? [] : [`${batchId}仍有${openDeviations}项未关闭偏差`]
-        }
+    /** 放行结论：把控制矩阵频率版本、批次监测断档、偏差处置接到同一份频率依据上 */
+    checkReleaseReadiness: builder.query<
+      ReleaseEvaluation,
+      { batch: Batch; batches: Batch[]; deviations: Deviation[]; frequencyVersions: FrequencyVersion[]; steps: ProcessStep[]; gaps: GapRecord[] }
+    >({
+      queryFn: async (arg) => ({
+        data: evaluateRelease(arg.batch, arg.batches, arg.deviations, arg.frequencyVersions, arg.steps, arg.gaps)
       })
     })
   })
